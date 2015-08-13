@@ -1,0 +1,27 @@
+[[["Q", "W", "E", "R", "T",                               "Y", "U", "I", "O", "P"],
+  ["A", "S", "D", "F", "G",                               "H", "J", "K", "L", "SPACE"],
+  ["Z", "X", "C", "V", "B",           "GUI",              "N", "M", "COMMA", "PERIOD", "SLASH"],
+  ["ESC", "TAB", "BACKSPACE", "FN", "SHIFT",   "CTRL",   "ALT", "ENTER", "MINUS", "QUOTE", "SEMICOLON"]],
+
+ [[["shift", "1"], ["shift", "2"], ["shift", "LEFT_BRACE"], ["shift", "RIGHT_BRACE"],
+   ["shift", "BACKSLASH"], "PAGE_UP", "7", "8", "9", ["shift", "8"]],
+  [["shift", "3"], ["shift", "4"], ["shift", "9"], ["shift", "0"],
+  "TILDE", "PAGE_DOWN", "4", "5", "6", ["shift", "EQUAL"]],
+  [["shift", "5"], ["shift", "6"], "LEFT_BRACE", "RIGHT_BRACE", ["shift", "TILDE"],
+   "GUI", ["shift", "7"], "1", "2", "3", "BACKSLASH"],
+  [["function", 2], ["shift", "INSERT"], "BACKSPACE", "FN", "SHIFT", "CTRL",
+   "ALT", "ENTER", "PERIOD", "0", "EQUAL"]],
+
+ [["HOME", "UP", "END", "INSERT", "PAGE_UP", "UP", "F7", "F8", "F9", "F10"],
+  ["LEFT", "DOWN", "RIGHT", "DELETE", "PAGE_DOWN", "DOWN", "F4", "F5", "F6", "F11"],
+  ["", "", "", "", "", "GUI", "", "F1", "F2", "F3", "F12"],
+  [["layer", 0], "", "BACKSPACE", "FN", "SHIFT", "CTRL",
+   "ALT", "ENTER", "", "", ["reset"]]]]
+
+/* qwerty.json
+
+   Standard Atreus layout; should also work for Colemak if you do the
+   layout mapping on the OS side, but dvorak requires a different layout
+   file since the punctuation shuffles around; see softdvorak.json.
+
+*/
