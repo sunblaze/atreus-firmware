@@ -46,9 +46,10 @@ function rendercharacters {
   -e 's/shiftBACKSLASH/|/' \
   -e 's/shiftLEFT_BRACE/{/' \
   -e 's/shiftRIGHT_BRACE/}/' \
+  -e 's/shiftQUOTE/"/' \
   -e 's/PAGE_DOWN/PgDn/' \
   -e 's/PAGE_UP/PgUp/' \
-  -e 's/BACKSPACE/← BS/' \
+  -e 's/BACKSPACE/BSP/' \
   -e 's/COMMA/,/' \
   -e 's/DELETE/Del/' \
   -e 's/DOWN/↓/' \

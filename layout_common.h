@@ -1,17 +1,18 @@
 int fn_decay = 0;
+int fn_active = 0;
+int fn2_active = 0;
 
 void activate_fn() {
   fn_decay = 20;
+  fn_active = 1;
 };
 
-int layer_to_jump = 0;
-
-// jump to this layer when fn is released
-void layer_jump() {
-  layer_to_jump = 2;
+void activate_fn2() {
+  fn_decay = 20;
+  fn2_active = 1;
 };
 
-void (*layer_functions[])(void) = {reset, activate_fn, layer_jump};
+void (*layer_functions[])(void) = {reset, activate_fn, activate_fn2};
 
 // When we are sending key combinations that include modifiers, the OS
 // can do some level of error-correction to prevent this scenario:
@@ -29,14 +30,17 @@ void (*layer_functions[])(void) = {reset, activate_fn, layer_jump};
 // does.
 
 void per_cycle() {
-  if(fn_decay > 1) {
-    current_layer = layers[1];
-    fn_decay--;
-  } else if(fn_decay == 1) {
-    current_layer_number = layer_to_jump;
+  if(fn_decay > 0) {
+    if(fn_active && fn2_active){
+      current_layer = layers[3];
+    } else if(fn2_active){
+      current_layer = layers[2];
+    } else {
+      current_layer = layers[1];
+    }
     fn_decay--;
   } else {
-    layer_to_jump = 0;
-    fn_decay = 0;
+    fn_active = 0;
+    fn2_active = 0;
   }
 };
