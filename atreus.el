@@ -45,7 +45,9 @@
 
 (defun atreus-key (key)
   (pcase key
-    (`("reset") "FUNCTION(0)") ("FN" "PRE_FUNCTION(1)")
+    (`("reset") "FUNCTION(0)")
+    ("FN" "PRE_FUNCTION(1)")
+    ("FN2" "PRE_FUNCTION(2)")
     (`("pre-function" ,f) (format "PRE_FUNCTION(%s)" f))
     (`("function" ,f) (format "FUNCTION(%s)" f))
     (`("ctrl" ,keycode) (format "CTRL(KEY_%s)" keycode))
