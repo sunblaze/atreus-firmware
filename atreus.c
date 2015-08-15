@@ -49,6 +49,7 @@ int pressed_count = 0;
 int presses[KEY_COUNT];
 int last_pressed_count = 0;
 int last_presses[KEY_COUNT];
+int usb_presses = 0;
 
 #define CTRL(key)   (0x1000 + (key))
 #define SHIFT(key)  (0x2000 + (key))
@@ -145,7 +146,6 @@ void pre_invoke_functions() {
 };
 
 void calculate_presses() {
-  int usb_presses = 0;
   for(int i = 0; i < pressed_count; i++) {
     int keycode = current_layer[presses[i]];
     if(keycode >= MIN_FUNCTION && keycode <= MAX_FUNCTION) {
@@ -214,6 +214,7 @@ void clear_keys() {
   for(int i = 0; i < 6; i++) {
     keyboard_keys[i] = 0;
   };
+  usb_presses = 0;
 };
 
 int main() {
