@@ -29,7 +29,101 @@ void mod4_q(){
   mod4_any(KEY_Q);
 }
 
-void (*layer_functions[])(void) = {reset, activate_fn, activate_fn2, mod4_q};
+void mod4_w(){
+  mod4_any(KEY_W);
+}
+
+void mod4_e(){
+  mod4_any(KEY_E);
+}
+
+void mod4_r(){
+  mod4_any(KEY_R);
+}
+
+void mod4_a(){
+  mod4_any(KEY_A);
+}
+
+void mod4_s(){
+  mod4_any(KEY_S);
+}
+
+void mod4_d(){
+  mod4_any(KEY_D);
+}
+
+void mod4_f(){
+  mod4_any(KEY_F);
+}
+
+void mod4_z(){
+  mod4_any(KEY_Z);
+}
+
+void mod4_x(){
+  mod4_any(KEY_X);
+}
+
+void mod4_c(){
+  mod4_any(KEY_C);
+}
+
+void mod4_v(){
+  mod4_any(KEY_V);
+}
+
+void mod4_g(){
+  mod4_any(KEY_G);
+}
+
+void mod4_b(){
+  mod4_any(KEY_B);
+}
+
+void mod4_1(){
+  mod4_any(KEY_1);
+}
+
+void mod4_2(){
+  mod4_any(KEY_2);
+}
+void mod4_enter(){
+  mod4_any(KEY_ENTER);
+}
+
+void mod4_space(){
+  mod4_any(KEY_SPACE);
+}
+
+void mod4_j(){
+  mod4_any(KEY_J);
+}
+
+void mod4_l(){
+  mod4_any(KEY_L);
+}
+
+void mod4_k(){
+  mod4_any(KEY_K);
+}
+
+void mod4_i(){
+  mod4_any(KEY_I);
+}
+
+void mod4_p(){
+  mod4_any(KEY_P);
+}
+
+void mod4_semicolon(){
+  mod4_any(KEY_SEMICOLON);
+}
+
+void (*layer_functions[])(void) = {reset, activate_fn, activate_fn2,
+  mod4_q, mod4_w, mod4_e, mod4_r, mod4_a, mod4_s, mod4_d, mod4_f,
+  mod4_z, mod4_x, mod4_c, mod4_v, mod4_g, mod4_b, mod4_1, mod4_2,
+  mod4_enter, mod4_space, mod4_j, mod4_l, mod4_k, mod4_i, mod4_p, mod4_semicolon};
 
 // When we are sending key combinations that include modifiers, the OS
 // can do some level of error-correction to prevent this scenario:
