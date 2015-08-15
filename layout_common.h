@@ -5,14 +5,31 @@ int fn2_active = 0;
 void activate_fn() {
   fn_decay = 20;
   fn_active = 1;
-};
+}
 
 void activate_fn2() {
   fn_decay = 20;
   fn2_active = 1;
-};
+}
 
-void (*layer_functions[])(void) = {reset, activate_fn, activate_fn2};
+int mod4_key = 0;
+int mod4_state = 0;
+void mod4_any(int key_code) {
+  if(mod4_state == 0){
+    if(mod4_key == 0){
+      mod4_key = key_code;
+      mod4_state = 5;
+    }else if(mod4_key == key_code){
+      mod4_state = 1;
+    }
+  }
+}
+
+void mod4_q(){
+  mod4_any(KEY_Q);
+}
+
+void (*layer_functions[])(void) = {reset, activate_fn, activate_fn2, mod4_q};
 
 // When we are sending key combinations that include modifiers, the OS
 // can do some level of error-correction to prevent this scenario:
@@ -43,4 +60,23 @@ void per_cycle() {
     fn_active = 0;
     fn2_active = 0;
   }
-};
+
+  if(mod4_state == 0){
+    mod4_key = 0;
+  }else{
+    switch(mod4_state)
+    {
+      case 1:
+        keyboard_keys[usb_presses++] = mod4_key;
+      case 2:
+        keyboard_modifier_keys |= KEY_RIGHT_SHIFT;
+      case 3:
+        keyboard_modifier_keys |= KEY_RIGHT_ALT;
+      case 4:
+        keyboard_modifier_keys |= KEY_RIGHT_CTRL;
+      case 5:
+        keyboard_modifier_keys |= KEY_RIGHT_GUI;
+    }
+    mod4_state--;
+  }
+}
