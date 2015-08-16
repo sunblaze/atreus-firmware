@@ -7,10 +7,10 @@
   [["mod4", "Z"], ["mod4", "X"], ["mod4", "C"], ["mod4", "V"], ["mod4", "B"], "FN2", "", "", "", "", ""],
   [["mod4", "1"], ["mod4", "2"], "", "", ["mod4", "SPACE"],      "FN",               "", "", "", "", ["mod4", "SEMICOLON"]]],
  [["LEFT_BRACE", "7", "8", "9", "RIGHT_BRACE",                                       ["shift", "LEFT_BRACE"], ["shift", "RIGHT_BRACE"], "UP", ["shift", "9"], ["shift", "0"]],
-  ["TILDE", "4", "5", "6", "QUOTE",                                                  ["shift", "1"], "LEFT", "DOWN", "RIGHT", ["shift", "2"]],
+  ["TILDE", "4", "5", "6", "QUOTE",                                                  ["shift", "MINUS"], "LEFT", "DOWN", "RIGHT", ["shift", "QUOTE"]],
   ["BACKSLASH", "1", "2", "3", "SLASH",             "FN2",                           ["shift", "3"], ["shift", "4"], ["shift", "8"], ["shift", "5"], ["shift", "7"]],
-  ["EQUAL", "0", "DELETE", "HOME", "END",           "FN",                            ["shift", "QUOTE"], ["shift", "EQUAL"], ["shift", "BACKSLASH"], ["shift", "TILDE"], ["shift", "6"]]],
- [["", "", "", "", "",                                                               "", "", "", "", ""],
+  ["EQUAL", "0", "DELETE", "HOME", ["shift","2"],           "FN",                    ["shift", "TILDE"], ["shift", "1"], ["shift", "BACKSLASH"], ["shift", "EQUAL"], ["shift", "6"]]],
+ [[["gui","1"], ["gui","2"], ["gui","3"], ["gui","4"], ["gui","5"],                                                               "", "", "", "", ""],
   ["", "", "", "", "",                                                               "", "", "", "", ""],
   ["", "", "", "", "",                              "FN2",                           "", "", "", "", ""],
   ["", "", "", "", "",                              "FN",                            "", "", "", "", ["reset"]]]]
