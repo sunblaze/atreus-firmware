@@ -55,6 +55,7 @@
     (`("alt" ,keycode) (format "ALT(KEY_%s)" keycode))
     (`("gui" ,keycode) (format "GUI(KEY_%s)" keycode))
     (`("mod4" ,keycode) (format "CTRL(SHIFT(ALT(GUI(KEY_%s))))" keycode))
+    (`("gui", "shift", keycode) (format "GUI(SHIFT(KEY_%s))" keycode))
     ("CTRL" "KEYBOARD_LEFT_CTRL")
     ("CTRL_L" "KEYBOARD_LEFT_CTRL")
     ("CTRL_R" "KEYBOARD_RIGHT_CTRL")

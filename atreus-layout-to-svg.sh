@@ -47,6 +47,8 @@ function rendercharacters {
   -e 's/shiftLEFT_BRACE/{/' \
   -e 's/shiftRIGHT_BRACE/}/' \
   -e 's/shiftQUOTE/"/' \
+  -e 's/mod4/✪/' \
+  -e 's/gui//' \
   -e 's/PAGE_DOWN/PgDn/' \
   -e 's/PAGE_UP/PgUp/' \
   -e 's/BACKSPACE/BSP/' \
@@ -68,7 +70,7 @@ function rendercharacters {
   -e 's/TILDE/`/' \
   -e 's/UP/↑/' \
   -e 's/function/Layer/' \
-  -e 's/BACKSLASH/\\/' \
+  -e 's/BACKSLASH/\\\\/' \
   -e 's/SLASH/\\\//'
 }
 
