@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+LAYOUT=two_fns make jsonlayout
+make clean upload USB=/dev/cu.usbmodem80131
