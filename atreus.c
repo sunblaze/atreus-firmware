@@ -13,11 +13,6 @@
 
 void reset(void);
 
-// set this for layer changes that need to persist beyond one cycle
-int current_layer_number = 0;
-// this gets reset every cycle
-unsigned int *current_layer;
-
 #define ROW_COUNT 4
 #define COL_COUNT 11
 #define KEY_COUNT ROW_COUNT*COL_COUNT
@@ -49,6 +44,10 @@ int pressed_count = 0;
 int presses[KEY_COUNT];
 int last_pressed_count = 0;
 int last_presses[KEY_COUNT];
+
+#define FN_PRESSED 0x01
+#define FN2_PRESSED 0x02
+uint8_t fn_keys_pressed = 0;
 
 #define CTRL(key)   (0x1000 + (key))
 #define SHIFT(key)  (0x2000 + (key))
@@ -136,7 +135,8 @@ void debounce(int passes_remaining) {
 
 void pre_invoke_functions() {
   for(int i = 0; i < pressed_count; i++) {
-    unsigned int keycode = current_layer[presses[i]];
+    // PRE_FUNCTIONS only work on first layer (layer 0)
+    unsigned int keycode = layers[0][presses[i]];
     if(keycode >= MIN_PRE_FUNCTION && keycode <= MAX_PRE_FUNCTION) {
       (layer_functions[keycode - MIN_PRE_FUNCTION])();
     }
@@ -147,15 +147,16 @@ void pre_invoke_functions() {
 void calculate_presses() {
   int usb_presses = 0;
   for(int i = 0; i < pressed_count; i++) {
+    unsigned int *current_layer = layers[fn_keys_pressed];
     unsigned int keycode = current_layer[presses[i]];
+
     if(keycode >= MIN_FUNCTION && keycode <= MAX_FUNCTION) {
       // regular layout functions
       (layer_functions[keycode - MIN_FUNCTION])();
     } else if(keycode >= MIN_PRE_FUNCTION && keycode <= MAX_PRE_FUNCTION) {
       // pre-invoke functions have already been processed
     } else if(keycode >= MIN_LAYER && keycode <= MAX_LAYER) {
-      // layer set
-      current_layer_number = keycode - MIN_LAYER;
+      //TODO MIN_LAYER and MAX_LAYER should be removed since I don't care for them
     } else if(keycode == KEYBOARD_LEFT_CTRL) {
       keyboard_modifier_keys |= KEY_LEFT_CTRL;
     } else if(keycode == KEYBOARD_RIGHT_CTRL) {
@@ -209,11 +210,11 @@ void init() {
 };
 
 void clear_keys() {
-  current_layer = layers[current_layer_number];
   keyboard_modifier_keys = 0;
   for(int i = 0; i < 6; i++) {
     keyboard_keys[i] = 0;
   };
+  fn_keys_pressed = 0;
 };
 
 int main() {
@@ -237,3 +238,11 @@ void reset(void) {
   *(uint16_t *)0x0800 = 0x7777;
   wdt_enable(WDTO_120MS);
 };
+
+void fn_pressed() {
+  fn_keys_pressed |= FN_PRESSED;
+}
+
+void fn2_pressed() {
+  fn_keys_pressed |= FN2_PRESSED;
+}
