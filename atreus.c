@@ -12,6 +12,8 @@
 // Layout setup
 
 void reset(void);
+void fn_pressed();
+void fn2_pressed();
 
 #define ROW_COUNT 4
 #define COL_COUNT 11
@@ -48,6 +50,8 @@ int last_presses[KEY_COUNT];
 #define FN_PRESSED 0x01
 #define FN2_PRESSED 0x02
 uint8_t fn_keys_pressed = 0;
+
+int active_layer[KEY_COUNT];
 
 #define CTRL(key)   (0x1000 + (key))
 #define SHIFT(key)  (0x2000 + (key))
@@ -147,8 +151,7 @@ void pre_invoke_functions() {
 void calculate_presses() {
   int usb_presses = 0;
   for(int i = 0; i < pressed_count; i++) {
-    unsigned int *current_layer = layers[fn_keys_pressed];
-    unsigned int keycode = current_layer[presses[i]];
+    unsigned int keycode = active_layer[presses[i]];
 
     if(keycode >= MIN_FUNCTION && keycode <= MAX_FUNCTION) {
       // regular layout functions
@@ -217,14 +220,36 @@ void clear_keys() {
   fn_keys_pressed = 0;
 };
 
+void init_active_layer() {
+  for(int i = 0; i < KEY_COUNT; ++i) {
+    active_layer[i] = layers[0][i];
+  }
+}
+
+void update_active_layer() {
+  for(int active_index = 0; active_index < KEY_COUNT; ++active_index) {
+    int is_pressed = 0;
+    for(int pressed_index = 0; pressed_index < pressed_count; ++pressed_index) {
+      if(presses[pressed_index] == active_index){
+        is_pressed = 1;
+      }
+    }
+    if(!is_pressed){
+      active_layer[active_index] = layers[fn_keys_pressed][active_index];
+    }
+  }
+}
+
 int main() {
   init();
+  init_active_layer();
   while(1) {
     clear_keys();
     debounce(DEBOUNCE_PASSES);
     pre_invoke_functions();
     calculate_presses();
     usb_keyboard_send();
+    update_active_layer();
   };
 };
 
